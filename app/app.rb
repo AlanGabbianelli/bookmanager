@@ -1,11 +1,14 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require 'sinatra/flash'
+
 require_relative 'models/data_mapper_setup.rb'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
+  register Sinatra::Flash
 
   helpers do
     def current_user
@@ -44,20 +47,20 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
-    @failed_signup = session[:error]
+    @user = User.new
     erb :'/users/new'
   end
 
   post '/users' do
-    user = User.create(email: params[:email],
+    @user = User.create(email: params[:email],
                     password: params[:password],
                     password_confirmation: params[:password_confirmation])
-    if user.id
-      session[:user_id]=user.id
+    if @user.id
+      session[:user_id]=@user.id
       redirect '/links'
     else
-      session[:error]='Cannot sign up. Mismatching passwords'
-      redirect '/users/new'
+      flash.now[:error]='Cannot sign up. Mismatching passwords'
+      erb :'/users/new'
     end
   end
 

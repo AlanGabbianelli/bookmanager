@@ -2,7 +2,7 @@
 <htmL>
   <form action="/users" method="post">
     <p>Enter your email address</p>
-    <input type="text" name="email" placeholder="email" autofocus required>
+    <input type="text" name="email" value="<%= @user.email %>" placeholder="email" autofocus required>
     <p>Enter a password</p>
     <input type="password" name="password" required>
     <p>Please confirm your password</p>
@@ -10,6 +10,6 @@
     <button type="submit">Sign up!</button>
   </form>
 
-  <%= @failed_signup %>
+  <%= flash[:error] %>
 
 </htmL>
