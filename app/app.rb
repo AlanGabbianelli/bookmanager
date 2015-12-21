@@ -2,6 +2,7 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'tilt/erb'
 
 require_relative 'models/data_mapper_setup.rb'
 

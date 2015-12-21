@@ -2,7 +2,7 @@
 # So that I can see all links saved
 # I want to see a list of link on the database
 
-feature 'Viewing links' do
+feature 'Displaying links' do
   scenario 'can see existing links on the links page' do
     Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
     visit '/links'
