@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "development"
+ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require 'sinatra/flash'
@@ -52,14 +52,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.create(email: params[:email],
+    @user = User.new(email: params[:email],
                     password: params[:password],
                     password_confirmation: params[:password_confirmation])
-    if @user.id
+    if @user.save
       session[:user_id]=@user.id
       redirect '/links'
     else
-      flash.now[:error]='Cannot sign up. Mismatching passwords'
+      flash.now[:notice]='Cannot sign up. Mismatching passwords.'
       erb :'/users/new'
     end
   end

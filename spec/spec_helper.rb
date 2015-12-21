@@ -8,7 +8,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
-require 'web_helper'
+require 'web_helpers'
 
 Capybara.app = BookmarkManager
 
@@ -27,7 +27,6 @@ RSpec.configure do |config|
 
 
   #DatabaseCleaner Gem Setup
-  #
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
