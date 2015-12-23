@@ -57,10 +57,10 @@ class BookmarkManager < Sinatra::Base
                     password: params[:password],
                     password_confirmation: params[:password_confirmation])
     if @user.save
-      session[:user_id]=@user.id
+      session[:user_id] = @user.id
       redirect '/links'
     else
-      flash.now[:notice]='Cannot sign up. Mismatching passwords.'
+      flash.now[:signup_errors] = @user.errors.full_messages
       erb :'/users/new'
     end
   end
