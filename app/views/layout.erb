@@ -6,12 +6,27 @@
   <body>
     <% if current_user %>
       Welcome <%= @current_user.email %>!
+      <form method='post' action='/sessions'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' value='Sign out'>
+      </form>
     <% else %>
       <form action='/users/new'>
         <input type='submit' value='Create an account'>
       </form>
+      <br><br>
+
+      <form action='/sessions/new'>
+        <input type='submit' value='Sign in'>
+      </form>
     <% end %>
     <br><br>
+
+    <% if flash[:notice] %>
+      <div id='notice'>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <% if flash[:signup_errors] && !flash[:signup_errors].empty? %>
     Please, refer to the following messages:

@@ -9,3 +9,7 @@
   </label>
   <input type='submit' value='Sign in'>
 </form>
+<br><br>
+<% if flash[:signin_errors] %>
+    <%= flash[:signin_errors] %>
+<% end %>
