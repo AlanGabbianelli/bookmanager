@@ -10,6 +10,7 @@ group :production do
   gem 'rake'
   gem 'bcrypt'
   gem 'sinatra-flash'
+  gem 'pg'
 end
 
 group :test do
